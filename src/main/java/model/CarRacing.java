@@ -8,11 +8,11 @@ public class CarRacing {
     private int carCount;
     private ArrayList<Car> cars = new ArrayList<>();
 
-    public RacingLog racing(String[] names, int cycle) {
+    public RacingDto racing(String[] names, int cycle) {
         preparingCar(names);
         racingStart(cycle);
         ArrayList<String> winner = racingWinner(cars);
-        return new RacingLog(cars, winner);
+        return new RacingDto(cars, winner, cycle);
     }
     public void preparingCar(String[] names) {
         carCount = names.length;

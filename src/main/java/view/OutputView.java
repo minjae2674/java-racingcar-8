@@ -1,20 +1,22 @@
 package view;
 
 import model.Car;
-import model.RacingLog;
+import model.RacingDto;
 
-import java.net.CookieHandler;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 
 public class OutputView {
     private final String ONE_STEP = "-";
 
-    public void outPut(RacingLog result, int cycle) {
+    public void outPut(RacingDto result) {
         System.out.println("실행 결과");
+        int cycle = result.getCycle();
         for (int i = 0; i < cycle; i++) {
-            for (Car car : result.getCars()) {
-                System.out.println(car.getName() + " : " + carDistance(car, i));
+            Map<String, List<Boolean>> log = result.getRacingLog();
+            for (String carName : log.keySet()) {
+                System.out.println(carName + " : " + carDistance(log.get(carName), i));
             }
             System.out.println();
         }
@@ -22,8 +24,7 @@ public class OutputView {
 
     }
 
-    public String carDistance(Car car, int i) {
-        ArrayList<Boolean> history = car.getHistory();
+    public String carDistance(List<Boolean> history, int i) {
         ArrayList<String> step = new ArrayList<>();
         for (int j = 0; j < i+1; j++) {
             if (history.get(j)) {

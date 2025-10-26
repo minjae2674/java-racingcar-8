@@ -1,12 +1,9 @@
 package controller;
 
-import model.Car;
 import model.CarRacing;
-import model.RacingLog;
+import model.RacingDto;
 import view.InputView;
 import view.OutputView;
-
-import java.util.ArrayList;
 
 public class Controller {
     private CarRacing carracing = new CarRacing();
@@ -16,8 +13,8 @@ public class Controller {
         String[] names = InputView.inputName();
         int cycle = InputView.inputTry();
 
-        RacingLog result = carracing.racing(names, cycle);
+        RacingDto result = carracing.racing(names, cycle);
 
-        outputView.outPut(result, cycle);
+        outputView.outPut(result);
     }
 }
